@@ -1,0 +1,21 @@
+spring:
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+# No cache on the classpath
+#      cache:
+#        ttl: 2s
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: service
+          uri: lb://service
+          predicates:
+            - Path=/service/**
+logging:
+  level:
+    root: ERROR
+    custom.discovery.gateway: INFO
